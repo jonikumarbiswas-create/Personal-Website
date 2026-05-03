@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Joni Kumar Biswas — Accounting & Finance</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#050d1a;--navy2:#0a1628;--navy3:#0f1f38;--navy4:#162847;
+  --cyan:#00e5ff;--cyan2:#00b8d9;--cyan-dim:#003d4d;
+  --gold:#ffd166;--gold2:#e6b84a;
+  --rose:#ff6b9d;
+  --white:#f0f4ff;--white2:#bcc8e0;--muted:#5d7a9a;
+  --line:rgba(0,229,255,0.10);
+  --display:'Playfair Display',Georgia,serif;
+  --body:'Outfit',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:var(--body);overflow-x:hidden;cursor:none}
+.cursor-dot{width:8px;height:8px;background:var(--cyan);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:transform 0.1s}
+.cursor-ring{width:36px;height:36px;border:1px solid var(--cyan);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:all 0.12s ease;opacity:0.5}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+.orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;animation:drift 14s ease-in-out infinite alternate}
+.orb1{width:600px;height:600px;background:rgba(0,229,255,0.055);top:-200px;right:-200px}
+.orb2{width:500px;height:500px;background:rgba(255,107,157,0.04);bottom:100px;left:-200px;animation-delay:-5s}
+.orb3{width:350px;height:350px;background:rgba(255,209,102,0.035);top:40%;right:15%;animation-delay:-9s}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(40px,50px) scale(1.12)}}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 64px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,13,26,0.75);backdrop-filter:blur(24px);border-bottom:1px solid var(--line)}
+.nav-logo{font-family:var(--mono);font-size:12px;color:var(--cyan);letter-spacing:0.18em;text-transform:uppercase}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--cyan);transition:width 0.3s}
+.nav-links a:hover{color:var(--cyan)}
+.nav-links a:hover::after{width:100%}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 64px 80px;position:relative;overflow:hidden}
+.hero-content{position:relative;z-index:1;max-width:1100px;margin:0 auto;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);padding:8px 20px;border-radius:100px;font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:36px;opacity:0;animation:slideIn 0.8s ease forwards;animation-delay:0.2s}
+.badge-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:blink 1.5s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.15}}
+.hero-name{font-family:var(--display);font-size:clamp(60px,8vw,118px);font-weight:900;line-height:0.92;letter-spacing:-0.03em;opacity:0;animation:slideIn 0.9s ease forwards;animation-delay:0.35s}
+.hero-name .l1{display:block;color:var(--white)}
+.hero-name .l2{display:block;background:linear-gradient(120deg,var(--cyan) 0%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic}
+.hero-sub{margin-top:28px;font-size:17px;color:var(--white2);max-width:500px;line-height:1.75;font-weight:300;opacity:0;animation:slideIn 0.9s ease forwards;animation-delay:0.5s}
+.hero-actions{display:flex;gap:14px;margin-top:44px;flex-wrap:wrap;opacity:0;animation:slideIn 0.9s ease forwards;animation-delay:0.65s}
+.btn-p{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:4px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:var(--navy);font-weight:600;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;border:none;cursor:none;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 0 28px rgba(0,229,255,0.28)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(0,229,255,0.42)}
+.btn-s{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:4px;border:1px solid rgba(0,229,255,0.3);color:var(--cyan);font-size:13px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;cursor:none;transition:background 0.2s,border-color 0.2s}
+.btn-s:hover{background:rgba(0,229,255,0.08);border-color:var(--cyan)}
+.hero-stats{display:flex;gap:0;margin-top:68px;border:1px solid var(--line);border-radius:8px;overflow:hidden;max-width:520px;opacity:0;animation:slideIn 0.9s ease forwards;animation-delay:0.8s}
+.hstat{flex:1;padding:22px 26px;border-right:1px solid var(--line);position:relative;overflow:hidden}
+.hstat:last-child{border-right:none}
+.hstat::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,229,255,0.05),transparent);opacity:0;transition:opacity 0.3s}
+.hstat:hover::before{opacity:1}
+.hstat-n{font-family:var(--display);font-size:34px;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hstat-l{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:0.06em;text-transform:uppercase}
+
+.hero-card{position:absolute;right:64px;top:50%;transform:translateY(-50%);width:272px;background:rgba(10,22,40,0.82);border:1px solid rgba(0,229,255,0.15);border-radius:14px;padding:26px;backdrop-filter:blur(24px);opacity:0;animation:floatIn 1s ease forwards;animation-delay:1s;box-shadow:0 24px 64px rgba(0,0,0,0.55),inset 0 1px 0 rgba(0,229,255,0.08)}
+@keyframes floatIn{from{opacity:0;transform:translateY(calc(-50% + 32px))}to{opacity:1;transform:translateY(-50%)}}
+.ca{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.ca-av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:16px;font-weight:700;color:var(--navy)}
+.ca-n{font-size:14px;font-weight:600;color:var(--white)}
+.ca-s{font-size:11px;color:var(--muted);margin-top:2px;font-family:var(--mono)}
+.cr{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:12px}
+.cr:last-of-type{border-bottom:none}
+.ck{color:var(--muted)}.cv{color:var(--cyan);font-family:var(--mono)}
+.cv.g{color:var(--gold)}.cv.r{color:var(--rose)}
+.cs{display:flex;align-items:center;gap:6px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.15);border-radius:100px;padding:7px 14px;margin-top:14px;font-size:11px;color:var(--cyan);font-family:var(--mono)}
+
+.sw{max-width:1100px;margin:0 auto;padding:96px 64px}
+.divider{border:none;border-top:1px solid var(--line)}
+.sl{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:18px}
+.sl::before{content:'';display:inline-block;width:28px;height:1px;background:var(--cyan)}
+.st{font-family:var(--display);font-size:clamp(38px,4.5vw,62px);font-weight:700;line-height:1.05;color:var(--white);margin-bottom:60px}
+.st em{font-style:italic;background:linear-gradient(135deg,var(--cyan),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;position:relative}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--cyan),rgba(0,229,255,0))}
+.ti{display:grid;grid-template-columns:190px 1fr;gap:44px;padding:44px 0 44px 36px;border-bottom:1px solid var(--line);position:relative;opacity:0;transform:translateX(-18px);transition:opacity 0.7s ease,transform 0.7s ease}
+.ti.visible{opacity:1;transform:translateX(0)}
+.ti::before{content:'';position:absolute;left:-4px;top:52px;width:9px;height:9px;border-radius:50%;background:var(--navy);border:2px solid var(--cyan);box-shadow:0 0 14px rgba(0,229,255,0.55)}
+.ti-p{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.8;padding-top:4px}
+.ti-cur{display:inline-block;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.25);color:var(--cyan);font-size:10px;padding:3px 10px;border-radius:100px;letter-spacing:0.08em;margin-top:8px;font-family:var(--mono)}
+.ti-r{font-family:var(--display);font-size:25px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:6px}
+.ti-c{font-size:12px;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;font-family:var(--mono);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.ti-c::before{content:'@';color:var(--muted)}
+.ti-d{font-size:14px;color:var(--white2);line-height:1.8;max-width:520px}
+
+/* SKILLS */
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.sc{background:var(--navy2);padding:30px 26px;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.6s ease,transform 0.6s ease,background 0.3s}
+.sc::before{content:'';position:absolute;top:-60%;left:-60%;width:220%;height:220%;background:radial-gradient(circle,rgba(0,229,255,0.06) 0%,transparent 55%);opacity:0;transition:opacity 0.3s}
+.sc:hover{background:var(--navy3)}
+.sc:hover::before{opacity:1}
+.sc.visible{opacity:1;transform:translateY(0)}
+.sc-ico{width:42px;height:42px;border-radius:8px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.14);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:17px}
+.sc-n{font-family:var(--display);font-size:17px;font-weight:700;color:var(--white);margin-bottom:7px}
+.sc-d{font-size:12px;color:var(--muted);line-height:1.6}
+.sc-bw{margin-top:14px;height:2px;background:rgba(255,255,255,0.06);border-radius:2px}
+.sc-b{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--cyan),var(--gold));width:0;transition:width 1.2s ease}
+.sc.visible .sc-b{width:var(--fill)}
+
+/* EDUCATION */
+.eg{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.ec{background:var(--navy2);border:1px solid var(--line);border-radius:12px;padding:34px;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.6s ease,transform 0.6s ease}
+.ec::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--gold))}
+.ec.visible{opacity:1;transform:translateY(0)}
+.ec:hover{border-color:rgba(0,229,255,0.22)}
+.ec-y{font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:14px}
+.ec-d{font-family:var(--display);font-size:21px;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:6px}
+.ec-m{font-size:13px;color:var(--gold);font-style:italic;font-family:var(--display);margin-bottom:10px}
+.ec-i{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5}
+.ec-g{display:inline-flex;align-items:center;gap:12px;padding:10px 18px;background:rgba(255,209,102,0.08);border:1px solid rgba(255,209,102,0.2);border-radius:6px}
+.ec-gn{font-family:var(--display);font-size:22px;font-weight:700;color:var(--gold)}
+.ec-gl{font-size:11px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase}
+
+/* EXTRAS */
+.xg{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.xt{font-family:var(--display);font-size:26px;font-weight:700;color:var(--white);margin-bottom:26px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.xi{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);opacity:0;transform:translateX(-10px);transition:opacity 0.5s ease,transform 0.5s ease}
+.xi.visible{opacity:1;transform:translateX(0)}
+.xb{flex-shrink:0;width:22px;height:22px;border-radius:4px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--navy);font-weight:700;margin-top:2px;font-family:var(--mono)}
+.xtx{font-size:13px;color:var(--white2);line-height:1.6}
+.xtx strong{color:var(--white);font-weight:600;display:block;margin-bottom:2px}
+
+/* LANGUAGES */
+.ls{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px}
+.lc{flex:1;min-width:200px;background:var(--navy2);border:1px solid var(--line);border-radius:10px;padding:26px 30px;opacity:0;transform:translateY(14px);transition:opacity 0.5s ease,transform 0.5s ease;position:relative;overflow:hidden}
+.lc::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--gold))}
+.lc.visible{opacity:1;transform:translateY(0)}
+.ln{font-family:var(--display);font-size:26px;font-weight:700;color:var(--white);margin-bottom:5px}
+.ll{font-size:12px;color:var(--cyan);font-family:var(--mono);letter-spacing:0.08em}
+
+/* CONTACT */
+.contact-strip{background:linear-gradient(135deg,var(--navy3),var(--navy4));border:1px solid var(--line);border-radius:14px;padding:46px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:32px;position:relative;overflow:hidden}
+.contact-strip::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at left,rgba(0,229,255,0.07),transparent 55%)}
+.cst{font-family:var(--display);font-size:34px;font-weight:700;color:var(--white)}
+.cst em{font-style:italic;background:linear-gradient(135deg,var(--cyan),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cls{display:flex;flex-direction:column;gap:10px}
+.cl{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--white2);font-size:13px;transition:color 0.2s;font-family:var(--mono)}
+.cl:hover{color:var(--cyan)}
+.cli{width:30px;height:30px;border-radius:6px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.15);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--cyan)}
+
+footer{border-top:1px solid var(--line);padding:36px 64px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;position:relative;z-index:1}
+.fl{font-family:var(--display);font-size:18px;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.fc{font-size:12px;color:var(--muted);font-family:var(--mono)}
+
+@keyframes slideIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:1000px){
+  nav{padding:14px 28px}
+  .hero{padding:100px 28px 60px}
+  .hero-card{display:none}
+  .sw{padding:72px 28px}
+  .ti{grid-template-columns:1fr;gap:10px;padding-left:28px}
+  .sg{grid-template-columns:1fr 1fr}
+  .eg{grid-template-columns:1fr}
+  .xg{grid-template-columns:1fr}
+  footer{padding:28px}
+  .contact-strip{padding:32px 28px}
+}
+@media(max-width:600px){
+  .sg{grid-template-columns:1fr}
+  .hero-stats{flex-direction:column;max-width:none}
+  .hstat{border-right:none;border-bottom:1px solid var(--line)}
+  .nav-links{gap:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cdot"></div>
+<div class="cursor-ring" id="cring"></div>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<nav>
+  <div class="nav-logo">JKB — Portfolio</div>
+  <div class="nav-links">
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge"><span class="badge-dot"></span>Open to opportunities · Dhaka, Bangladesh</div>
+    <h1 class="hero-name">
+      <span class="l1">Joni Kumar</span>
+      <span class="l2">Biswas</span>
+    </h1>
+    <p class="hero-sub">Accounting &amp; Finance Professional — BBA graduate with hands-on experience in banking, bookkeeping, and business development across corporate environments.</p>
+    <div class="hero-actions">
+      <a href="mailto:jonikumarbiswas@gmail.com" class="btn-p">✉ Get in Touch</a>
+      <a href="https://linkedin.com/in/dialcofficial" target="_blank" class="btn-s">↗ LinkedIn Profile</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">3.74</div><div class="hstat-l">BBA CGPA</div></div>
+      <div class="hstat"><div class="hstat-n">3+</div><div class="hstat-l">Roles held</div></div>
+      <div class="hstat"><div class="hstat-n">2nd</div><div class="hstat-l">Quiz rank</div></div>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="ca">
+      <div class="ca-av">JB</div>
+      <div><div class="ca-n">Joni Kumar Biswas</div><div class="ca-s">Accounts · Finance</div></div>
+    </div>
+    <div class="cr"><span class="ck">University</span><span class="cv">DIU Dhaka</span></div>
+    <div class="cr"><span class="ck">Speciality</span><span class="cv g">Accounting</span></div>
+    <div class="cr"><span class="ck">CGPA</span><span class="cv g">3.74 / 4.0</span></div>
+    <div class="cr"><span class="ck">Language</span><span class="cv">Bengali · EN</span></div>
+    <div class="cr"><span class="ck">Status</span><span class="cv r">● Active</span></div>
+    <div class="cs"><span>●</span> Currently @ Join Vnture AI</div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<div class="sw" id="experience">
+  <div class="sl">Professional experience</div>
+  <h2 class="st">Where I've<br><em>Worked</em></h2>
+  <div class="timeline">
+    <div class="ti">
+      <div class="ti-p">Feb 2026<br>Present<br><span class="ti-cur">● Current</span></div>
+      <div>
+        <div class="ti-r">Business Development Executive</div>
+        <div class="ti-c">Join Vnture AI</div>
+        <p class="ti-d">Managed Fiverr profile and international client communications, converting leads into live projects. Optimised gig listings and coordinated with team to ensure timely delivery and client satisfaction across global markets.</p>
+      </div>
+    </div>
+    <div class="ti">
+      <div class="ti-p">Jul 2025<br>Sep 2025</div>
+      <div>
+        <div class="ti-r">Executive, Accounts</div>
+        <div class="ti-c">Fly Far International</div>
+        <p class="ti-d">Handled financial records, bookkeeping, and assisted with monthly account reconciliations. Applied core accounting principles in a real-world travel industry context with precision and compliance focus.</p>
+      </div>
+    </div>
+    <div class="ti">
+      <div class="ti-p">Feb 2024<br>Jul 2024</div>
+      <div>
+        <div class="ti-r">Banking Intern</div>
+        <div class="ti-c">Dhaka Bank PLC</div>
+        <p class="ti-d">Supported daily banking operations including financial documentation and transaction processing. Gained practical exposure to banking compliance frameworks, customer service protocols, and regulatory procedures.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<div class="sw" id="skills">
+  <div class="sl">Technical abilities</div>
+  <h2 class="st">Core <em>Skills</em></h2>
+  <div class="sg">
+    <div class="sc" style="--fill:88%"><div class="sc-ico">📒</div><div class="sc-n">Financial Record Keeping</div><p class="sc-d">Bookkeeping, data entry, and financial documentation with high numerical accuracy.</p><div class="sc-bw"><div class="sc-b"></div></div></div>
+    <div class="sc" style="--fill:82%"><div class="sc-ico">🧾</div><div class="sc-n">QuickBooks</div><p class="sc-d">Accounting software for reconciliation, reporting, and financial management tasks.</p><div class="sc-bw"><div class="sc-b"></div></div></div>
+    <div class="sc" style="--fill:90%"><div class="sc-ico">📊</div><div class="sc-n">MS Excel</div><p class="sc-d">Certified via BITM — formulas, pivot tables, data organisation and analysis.</p><div class="sc-bw"><div class="sc-b"></div></div></div>
+    <div class="sc" style="--fill:75%"><div class="sc-ico">📣</div><div class="sc-n">Digital Marketing</div><p class="sc-d">SEO, social media strategy, and campaigns — certified by SR DreamIT &amp; Ghuri.</p><div class="sc-bw"><div class="sc-b"></div></div></div>
+    <div class="sc" style="--fill:85%"><div class="sc-ico">🔍</div><div class="sc-n">Analytical Thinking</div><p class="sc-d">Applying financial reasoning and detail-oriented problem-solving to business data.</p><div class="sc-bw"><div class="sc-b"></div></div></div>
+    <div class="sc" style="--fill:78%"><div class="sc-ico">🤝</div><div class="sc-n">Client Management</div><p class="sc-d">International client communication, lead conversion, and project coordination.</p><div class="sc-bw"><div class="sc-b"></div></div></div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<div class="sw" id="education">
+  <div class="sl">Academic background</div>
+  <h2 class="st">My <em>Education</em></h2>
+  <div class="eg">
+    <div class="ec">
+      <div class="ec-y">2020 — 2024</div>
+      <div class="ec-d">Bachelor of Business Administration</div>
+      <div class="ec-m">Major in Accounting</div>
+      <div class="ec-i">Daffodil International University, Dhaka</div>
+      <div class="ec-g"><div class="ec-gn">3.74</div><div class="ec-gl">CGPA / 4.00</div></div>
+    </div>
+    <div class="ec">
+      <div class="ec-y">2017 — 2019</div>
+      <div class="ec-d">Higher Secondary Certificate</div>
+      <div class="ec-m">Business Studies</div>
+      <div class="ec-i">Halishahar Cantonment Public School &amp; College, Chittagong</div>
+      <div class="ec-g"><div class="ec-gn">4.50</div><div class="ec-gl">GPA / 5.00</div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<div class="sw">
+  <div class="sl">Beyond the classroom</div>
+  <h2 class="st">Certifications &amp;<br><em>Activities</em></h2>
+  <div class="xg">
+    <div>
+      <div class="xt">Certifications</div>
+      <div class="xi"><div class="xb">01</div><div class="xtx"><strong>Excel Proficiency — BITM</strong>Data organisation, formulas, tables, and analysis techniques.</div></div>
+      <div class="xi"><div class="xb">02</div><div class="xtx"><strong>Digital Marketing — SR DreamIT</strong>SEO, social media strategy, and campaign management.</div></div>
+      <div class="xi"><div class="xb">03</div><div class="xtx"><strong>Digital Marketing — Ghuri Learning</strong>Online marketing fundamentals and content distribution.</div></div>
+    </div>
+    <div>
+      <div class="xt">Extracurricular</div>
+      <div class="xi"><div class="xb" style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)">★</div><div class="xtx"><strong>2nd Place — Business Quiz Competition</strong>Competed and placed 2nd in university-wide business knowledge challenge.</div></div>
+      <div class="xi"><div class="xb">GS</div><div class="xtx"><strong>General Secretary — Business Club</strong>Managed events and provided technical support for the club.</div></div>
+      <div class="xi"><div class="xb">AC</div><div class="xtx"><strong>Member — Accounting Club</strong>Actively participated in accounting activities and academic events.</div></div>
+      <div class="xi"><div class="xb">EV</div><div class="xtx"><strong>Event Organiser</strong>Assisted in Job Utshob, Convocation, and Orientation events.</div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<div class="sw">
+  <div class="sl">Communication</div>
+  <h2 class="st"><em>Languages</em></h2>
+  <div class="ls">
+    <div class="lc"><div class="ln">Bengali</div><div class="ll">Native / Mother tongue</div></div>
+    <div class="lc"><div class="ln">English</div><div class="ll">Professional working proficiency</div></div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<div class="sw" id="contact">
+  <div class="contact-strip">
+    <div>
+      <div class="cst">Let's <em>Connect</em></div>
+      <p style="margin-top:10px;font-size:14px;color:var(--muted);max-width:340px;position:relative">Open to accounting, finance, and business development roles. Feel free to reach out.</p>
+    </div>
+    <div class="cls">
+      <a href="mailto:jonikumarbiswas@gmail.com" class="cl"><div class="cli">✉</div>jonikumarbiswas@gmail.com</a>
+      <a href="tel:+8801875049536" class="cl"><div class="cli">☏</div>+880 1875049536</a>
+      <a href="https://linkedin.com/in/dialcofficial" target="_blank" class="cl"><div class="cli">in</div>linkedin.com/in/dialcofficial</a>
+      <a href="https://github.com/dialemon" target="_blank" class="cl"><div class="cli">&lt;/&gt;</div>github.com/dialemon</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="fl">Joni Kumar Biswas</div>
+  <div class="fc">© 2026 · Dhaka, Bangladesh</div>
+</footer>
+
+<script>
+const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  dot.style.left=mx+'px';dot.style.top=my+'px';
+});
+(function anim(){
+  rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(anim);
+})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.7)';ring.style.opacity='0.25'});
+  el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.opacity='0.5'});
+});
+
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'),parseInt(e.target.dataset.d||0));
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.ti,.sc,.ec,.xi,.lc').forEach((el,i)=>{
+  el.dataset.d=(i%4)*90;io.observe(el);
+});
+</script>
+</body>
+</html>
